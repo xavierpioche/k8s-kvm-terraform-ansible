@@ -1,0 +1,30 @@
+cd /home/xavier/PROJETS/RUNNING/terraform/kvm-dns
+
+terraform output -json information > ../../scripts/json/k8s-dns_hosts.json
+
+cd /home/xavier/PROJETS/RUNNING/terraform/kvm-k8s
+
+terraform output -json information > ../../scripts/json/k8s-cluster_hosts.json
+
+cd /home/xavier/PROJETS/RUNNING/scripts
+
+./k8s-cluster_parse_json2scope.py json/k8s-cluster_hosts.json > scopes/k8s-cluster_hosts.j2.scope
+
+./j2render.py -s k8s-cluster_hosts.j2.scope -t k8s-cluster_hosts.j2 -o k8s-cluster_hosts
+
+./k8s-cluster_parse_json2scope.py json/k8s-dns_hosts.json > scopes/k8s-dns_hosts.j2.scope
+
+./j2render.py -s k8s-dns_hosts.j2.scope -t k8s-dns_hosts.j2 -o k8s-dns_hosts
+
+cd scopes/
+
+./generate_k8s_ansible_variables_scope.sh
+
+cd ..
+
+./j2render.py -s k8s-cluster_ansible_variables.yaml.j2.scope -t k8s-cluster_ansible_variables.yaml.j2 -o k8s-cluster_ansible_variables.yaml
+
+
+cd /home/xavier/PROJETS/RUNNING/ansible/k8s-cluster
+cp ../../scripts/output/k8s-cluster_ansible_variables.yaml variables.yaml
+cp ../../scripts/output/k8s-cluster_hosts hosts

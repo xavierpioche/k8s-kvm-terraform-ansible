@@ -1,0 +1,4 @@
+dnsforwarder: 192.168.1.1
+domainname: k8s.xprd.local
+dnsservername: k8sdns1
+dnsserveraddress: 192.168.122.231

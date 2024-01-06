@@ -1,0 +1,45 @@
+{% for scope in variablescopes.variablescopes %}
+
+dns_domain: {{ scope.dns_domain }}
+dns_server: {{ scope.k8dns1_ip }}
+k8slb_name: {{ scope.k8slb }}
+k8slb_ip: {{ scope.k8slb_ip }}
+k8slb_vip_ip: {{ scope.k8slb_ip }}
+k8sma1_ip: {{ scope.k8sma1_ip }}
+k8sma1_name: {{ scope.k8sma1 }}
+k8sma2_ip: {{ scope.k8sma2_ip }}
+k8sma2_name: {{ scope.k8sma2 }}
+k8sma3_ip: {{ scope.k8sma3_ip }}
+k8sma3_name: {{ scope.k8sma3 }}
+k8swk1_ip: {{ scope.k8swk1_ip }}
+k8swk1_name: {{ scope.k8swk1 }}
+k8swk2_ip: {{ scope.k8swk2_ip }}
+k8swk2_name: {{ scope.k8swk2 }}
+k8swk3_ip: {{ scope.k8swk3_ip }}
+k8swk3_name: {{ scope.k8swk3 }}
+
+masters: "{{ scope.k8sma1_ip }},{{ scope.k8sma2_ip }},{{ scope.k8sma3_ip }}"
+main: {{ scope.k8sma1_ip }}
+loadbalancer: {{ scope.k8slb_ip }}
+
+master1: {{ scope.k8sma1_ip }}
+master2: {{ scope.k8sma2_ip }}
+master3: {{ scope.k8sma3_ip }}
+podscidr: "10.244.0.0/16"
+svcscidr: "192.168.12.0/24"
+dnsdomain: {{ scope.dns_domain }}
+
+kubernetes_prerequisites_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg2
+  - lsb-release
+  - bridge-utils
+
+kubernetes_version: 1.28.5-1.1
+
+kubeadm_init_master: {{ scope.k8sma1_ip }}
+
+
+{% endfor %}

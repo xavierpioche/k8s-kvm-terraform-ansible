@@ -1,0 +1,14 @@
+dns_domain: k8s.xprd.local
+dns_server: 192.168.122.231
+vip_name: k8s
+vip_ip: 192.168.122.250
+vip_port: 6443
+server_name_1: k8Sma1
+server_ip_1: k8Sma1.k8s.xprd.local
+server_port_1: 6443
+server_name_2: k8sma2
+server_ip_2: k8sma2.k8s.xprd.local
+server_port_2: 6443
+server_name_3: k8sma3
+server_ip_3: k8sma3.k8s.xprd.local
+server_port_3: 6443

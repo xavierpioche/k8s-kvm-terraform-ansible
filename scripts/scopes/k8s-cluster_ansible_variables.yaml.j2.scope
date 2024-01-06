@@ -1,0 +1,21 @@
+variablescopes:
+- {
+	k8sma1: k8sma1,
+	k8sma1_ip : 192.168.122.212,
+	k8sma2: k8sma2,
+	k8sma2_ip : 192.168.122.198,
+	k8sma3: k8sma3,
+	k8sma3_ip : 192.168.122.169,
+	k8swk1: k8swk1,
+	k8swk1_ip : 192.168.122.156,
+	k8swk2: k8swk2,
+	k8swk2_ip : 192.168.122.248,
+	k8swk3: k8swk3,
+	k8swk3_ip : 192.168.122.247,
+	k8dns1: k8dns1,
+	k8dns1_ip : 192.168.122.232,
+	k8slb: k8slb,
+	k8slb_ip : 192.168.122.250,
+        dns_domain: k8S.xprd.local,
+        ansible_user: xavier
+}

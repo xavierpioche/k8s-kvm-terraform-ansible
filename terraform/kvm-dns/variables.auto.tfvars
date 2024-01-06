@@ -1,0 +1,5 @@
+vms_name = [ "k8dns1" ]
+vms_domain = [ "k8S.xprd.local", "k8S.xprd.local" ]
+vms_ip_type = [ "dhcp", "dhcp" ]
+vms_memoryMB = [ 2048, 2048 ]
+vms_cpu = [ 1 , 1 ]
