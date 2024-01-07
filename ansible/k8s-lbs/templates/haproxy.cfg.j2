@@ -33,6 +33,13 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
+listen stats
+    bind :32700
+    stats enable
+    stats uri /
+    stats hide-version
+    stats auth admin:password
+
 frontend {{ vip_name }}
    bind *:{{ vip_port }}
    option tcplog
@@ -46,3 +53,17 @@ backend backend_{{ vip_name }}
    server  {{ server_name_1 }} {{ server_ip_1 }}:{{ server_port_1 }} check fall 3 rise 2 
    server  {{ server_name_2 }} {{ server_ip_2 }}:{{ server_port_2 }} check fall 3 rise 2 
    server  {{ server_name_3 }} {{ server_ip_3 }}:{{ server_port_3 }} check fall 3 rise 2 
+
+frontend default-app-front
+   bind *:{{ default_app_port }}
+   mode http
+   use_backend default-app-back
+
+backend default-app-back
+   mode http
+   balance roundrobin
+   server  {{ worker_name_1 }} {{ worker_ip_1 }}:{{ worker_port_1 }} check fall 3 rise 2 
+   server  {{ worker_name_2 }} {{ worker_ip_2 }}:{{ worker_port_2 }} check fall 3 rise 2 
+   server  {{ worker_name_3 }} {{ worker_ip_3 }}:{{ worker_port_3 }} check fall 3 rise 2 
+
+

@@ -1,3 +1,7 @@
+cd /home/xavier/PROJETS/RUNNING/terraform/kvm-lbs
+
+terraform output -json information > ../../scripts/json/k8s-lbs_hosts.json
+
 cd /home/xavier/PROJETS/RUNNING/terraform/kvm-dns
 
 terraform output -json information > ../../scripts/json/k8s-dns_hosts.json
@@ -6,15 +10,26 @@ cd /home/xavier/PROJETS/RUNNING/terraform/kvm-k8s
 
 terraform output -json information > ../../scripts/json/k8s-cluster_hosts.json
 
+#-- creation des fichiers hosts ansible
+
 cd /home/xavier/PROJETS/RUNNING/scripts
 
 ./k8s-cluster_parse_json2scope.py json/k8s-cluster_hosts.json > scopes/k8s-cluster_hosts.j2.scope
 
 ./j2render.py -s k8s-cluster_hosts.j2.scope -t k8s-cluster_hosts.j2 -o k8s-cluster_hosts
 
+
 ./k8s-cluster_parse_json2scope.py json/k8s-dns_hosts.json > scopes/k8s-dns_hosts.j2.scope
 
 ./j2render.py -s k8s-dns_hosts.j2.scope -t k8s-dns_hosts.j2 -o k8s-dns_hosts
+
+
+./k8s-cluster_parse_json2scope.py json/k8s-lbs_hosts.json > scopes/k8s-lbs_hosts.j2.scope
+
+./j2render.py -s k8s-lbs_hosts.j2.scope -t k8s-lbs_hosts.j2 -o k8s-lbs_hosts
+
+
+#-- creation des fichiers variables ansible
 
 cd scopes/
 
@@ -22,9 +37,23 @@ cd scopes/
 
 cd ..
 
+./j2render.py -s k8s-dns_ansible_variables.yaml.j2.scope -t k8s-dns_ansible_variables.yaml.j2 -o k8s-dns_ansible_variables.yaml
+
 ./j2render.py -s k8s-cluster_ansible_variables.yaml.j2.scope -t k8s-cluster_ansible_variables.yaml.j2 -o k8s-cluster_ansible_variables.yaml
 
+./j2render.py -s k8s-lbs_ansible_variables.yaml.j2.scope -t k8s-lbs_ansible_variables.yaml.j2 -o k8s-lbs_ansible_variables.yaml
 
-cd /home/xavier/PROJETS/RUNNING/ansible/k8s-cluster
+#-- copie des fichiers vers les repertoires ansible
+
+cd ../ansible/k8s-cluster
 cp ../../scripts/output/k8s-cluster_ansible_variables.yaml variables.yaml
 cp ../../scripts/output/k8s-cluster_hosts hosts
+
+cd ../k8s-dns
+cp ../../scripts/output/k8s-dns_ansible_variables.yaml variables.yaml
+cp ../../scripts/output/k8s-dns_hosts hosts
+
+
+cd ../k8s-lbs
+cp ../../scripts/output/k8s-lbs_ansible_variables.yaml variables.yaml
+cp ../../scripts/output/k8s-lbs_hosts hosts

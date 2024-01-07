@@ -49,5 +49,6 @@
          svc:
            - named
 
-   #- name: reboot the server
-   #  ansible.builtin.reboot:
+   - name: reboot the server
+     ansible.builtin.reboot:
+       reboot_timeout: 30

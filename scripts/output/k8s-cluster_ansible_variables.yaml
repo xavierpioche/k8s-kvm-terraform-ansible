@@ -22,23 +22,23 @@ masters: "192.168.122.212,192.168.122.198,192.168.122.169"
 main: 192.168.122.212
 loadbalancer: 192.168.122.250
 
-curr_a: 192.168.122.212
-peer_a_1: 192.168.122.198
-peer_a_2: 192.168.122.169
-
-curr_b: 192.168.122.198
-peer_b_1: 192.168.122.212
-peer_b_2: 192.168.122.169
-
-curr_c: 192.168.122.169
-peer_c_1: 192.168.122.212
-peer_c_2: 192.168.122.198
-
 master1: 192.168.122.212
 master2: 192.168.122.198
 master3: 192.168.122.169
 podscidr: "10.244.0.0/16"
 svcscidr: "192.168.12.0/24"
 dnsdomain: k8S.xprd.local
+
+kubernetes_prerequisites_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg2
+  - lsb-release
+  - bridge-utils
+
+kubernetes_version: 1.28.5-1.1
+
+kubeadm_init_master: 192.168.122.212
 
 

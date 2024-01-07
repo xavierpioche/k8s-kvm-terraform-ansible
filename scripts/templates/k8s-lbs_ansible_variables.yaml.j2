@@ -1,0 +1,26 @@
+{% for scope in variablescopes.variablescopes %}
+dns_domain: {{ scope.dns_domain }}
+dns_server: {{ scope.k8dns1_ip }}
+vip_name: {{ scope.k8slb }}
+vip_ip: {{ scope.k8slb_ip }}
+vip_port: 6443
+server_name_1: {{ scope.k8sma1 }}
+server_ip_1: {{ scope.k8sma1_ip }}
+server_port_1: 6443
+server_name_2: {{ scope.k8sma2 }}
+server_ip_2: {{ scope.k8sma2_ip }}
+server_port_2: 6443
+server_name_3: {{ scope.k8sma3 }}
+server_ip_3: {{ scope.k8sma3_ip }}
+server_port_3: 6443
+default_app_port: 80
+worker_name_1: {{ scope.k8swk1 }}
+worker_port_1: 8080
+worker_ip_1: {{ scope.k8swk1_ip }}
+worker_name_2: {{ scope.k8swk2 }}
+worker_port_2: 8080
+worker_ip_2: {{ scope.k8swk2_ip }}
+worker_name_3: {{ scope.k8swk3 }}
+worker_port_3: 8080
+worker_ip_3: {{ scope.k8swk3_ip }}
+{% endfor %}
