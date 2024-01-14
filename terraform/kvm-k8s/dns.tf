@@ -4,6 +4,7 @@ provider "dns" {
  }
 }
 
+
 variable "dns_server" {}
 variable "common_vm_envx" {}
 variable "common_vm_subenvx" {}
