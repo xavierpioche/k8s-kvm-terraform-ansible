@@ -19,6 +19,12 @@
         group: bind
 
     - import_tasks: zz_0-templates.yml
+       vars:
+         src: templates/resolv.conf.j2
+         dest: /etc/resolv.conf
+
+
+    - import_tasks: zz_0-templates.yml
       vars:
          src: templates/named.conf.options.j2
          dest: /etc/bind/named.conf.options
@@ -33,10 +39,15 @@
     - import_tasks: zz_0-templates.yml
       vars:
          src: templates/db.zone.j2
-         dest: /etc/bind/zones/k8s.xprd.local
+         dest: /etc/bind/zones/{{ domainname }}
          #domainname: k8s.xprd.local
          #dnsservername: k8sdns
          #dnsserveraddress: 192.168.122.197
+
+    - import_tasks: zz_0-templates.yml
+      vars:
+         src: templates/db.zone.ptr.j2
+         dest: /etc/bind/zones/{{ reverseip }}
 
     - name: disable apparmor
       ansible.builtin.service:
@@ -49,6 +60,12 @@
          svc:
            - named
 
-   - name: reboot the server
-     ansible.builtin.reboot:
-       reboot_timeout: 30
+    - name: disable resolved-service
+      ansible.builtin.service:
+         name: systemd-resolved
+         state: stopped
+         enabled: false
+
+    - name: reboot the server
+      ansible.builtin.reboot:
+        reboot_timeout: 30

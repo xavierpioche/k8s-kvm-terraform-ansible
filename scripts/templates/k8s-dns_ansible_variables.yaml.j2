@@ -3,4 +3,5 @@ dnsforwarder: 192.168.1.1
 domainname: {{ scope.dns_domain }}
 dnsservername: {{ scope.k8dns1 }}
 dnsserveraddress: {{ scope.k8dns1_ip }}
+reverseip: {{ scope.reverseip }}
 {% endfor %}

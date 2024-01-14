@@ -9,7 +9,8 @@ grep "," k8s-cluster_hosts.j2.scope >> ${OUT}
 grep "," k8s-dns_hosts.j2.scope >> ${OUT}
 grep "," k8s-lbs_hosts.j2.scope >> ${OUT}
 
-echo "        dns_domain: k8S.xprd.local," >> ${OUT}
+echo "        reverseip: 122.168.192," >> ${OUT}
+echo "        dns_domain: k8s.xprd.local," >> ${OUT}
 echo "        ansible_user: xavier" >> ${OUT}
 echo "}" >> ${OUT}
 

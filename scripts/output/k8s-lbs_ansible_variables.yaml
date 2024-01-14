@@ -1,6 +1,6 @@
 
-dns_domain: k8S.xprd.local
-dns_server: 192.168.122.232
+dns_domain: k8s.xprd.local
+dns_server: 192.168.122.231
 vip_name: k8slb
 vip_ip: 192.168.122.250
 vip_port: 6443

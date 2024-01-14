@@ -8,6 +8,7 @@ variable "dns_server" {}
 variable "common_vm_envx" {}
 variable "common_vm_subenvx" {}
 variable "common_vm_tld" {}
+variable "reverse" {}
 
 module "vm_dns" {
     for_each = local.vms_creation
@@ -17,5 +18,6 @@ module "vm_dns" {
     vm_subenvx = var.common_vm_subenvx
     vm_envx = var.common_vm_envx
     vm_tld = var.common_vm_tld
+    reverse = var.reverse
 }
 
