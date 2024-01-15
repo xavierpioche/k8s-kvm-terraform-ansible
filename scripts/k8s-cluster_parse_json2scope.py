@@ -2,6 +2,7 @@
 import sys
 import json
 import re
+import os
 
 
 file_path=sys.argv[1]
@@ -25,7 +26,7 @@ for x in range(k):
 if len(sys.argv) > 2:
 	ansible=str(sys.argv[2])
 else:
-	ansible="xavier"
+	ansible=os.environ.get('LOGNAME')
 
 print("\tansible_user: " + ansible)
 print('}')
