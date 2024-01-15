@@ -3,5 +3,5 @@ output "domain_name" {
 }
 
 output "dns_server" {
-	value = element(module.vm[0].vm_address[0],0)
+	value = module.vm[0].vm_address[0] != 0 ? element(concat(module.vm[0].vm_address[0],tolist(["none"])),0) : ""
 }
