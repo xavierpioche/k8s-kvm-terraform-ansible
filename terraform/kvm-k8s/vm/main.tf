@@ -17,7 +17,7 @@ variable "vmpool" { default = "pool" }
 variable "ansible_user" { default = "ansible" }
 variable "image_path" { default = "/tmp" }
 variable "image_name" { default = "jammy-server-cloudimg-amd64.img" }
-variable "var.diskoctsize" { default = 21474836480 }
+variable "diskoctsize" { default = 21474836480 }
 
 // fetch the latest ubuntu release image from their mirrors
 resource "libvirt_volume" "os_image" {
