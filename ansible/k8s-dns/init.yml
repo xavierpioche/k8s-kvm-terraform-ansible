@@ -19,7 +19,7 @@
         group: bind
 
     - import_tasks: zz_0-templates.yml
-       vars:
+      vars:
          src: templates/resolv.conf.j2
          dest: /etc/resolv.conf
 

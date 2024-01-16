@@ -17,6 +17,9 @@
 
      - import_tasks: zz_2-users.yml
 
+     - import_tasks: zz_1-proxy-system.yml
+       when: (proxy is defined) and (proxy|length > 0)
+
      - import_tasks: pre-requisites.yml
 
      - import_tasks: init_master.yml

@@ -54,6 +54,26 @@
     path: /etc/containerd/config.toml
   register: __containerd_toml_checksum_after
 
+- name: create containerd.service.d dir
+  file:
+     path: /etc/systemd/system/containerd.service.d
+     state: directory
+     owner: root
+     group: root
+     mode: u=rw,g=r,o=r
+  when: (proxy is defined) and (proxy|length > 0)
+
+- name: create http-proxy.conf for containerd
+  copy:
+     dest: /etc/systemd/system/containerd.service.d/http-proxy.conf
+     content: |
+        [Service]
+        Environment="HTTP_PROXY=http://{{ proxy }}"
+        Environment="HTTPS_PROXY=http://{{ proxy }}"
+        Environment="NO_PROXY=localhost,{{ masters }},{{ k8swk1_ip }},{{ k8swk2_ip }},{{ k8swk3_ip }}"
+  when: (proxy is defined) and (proxy|length > 0)
+
+
 - name: Restart containerd if needed
   service:
     name: containerd
