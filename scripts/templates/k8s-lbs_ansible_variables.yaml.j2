@@ -1,6 +1,6 @@
 {% for scope in variablescopes.variablescopes %}
 dns_domain: {{ scope.dns_domain }}
-dns_server: {{ scope.k8dns1_ip }}
+dns_server: {{ scope.k8sdns1_ip }}
 vip_name: {{ scope.k8slb }}
 vip_ip: {{ scope.k8slb_ip }}
 vip_port: 6443
@@ -23,4 +23,5 @@ worker_ip_2: {{ scope.k8swk2_ip }}
 worker_name_3: {{ scope.k8swk3 }}
 worker_port_3: 8080
 worker_ip_3: {{ scope.k8swk3_ip }}
+proxy:
 {% endfor %}

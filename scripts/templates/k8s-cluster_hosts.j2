@@ -1,26 +1,26 @@
 {% for scope in variablescopes.variablescopes %}
 
 [main]
-{{ scope.k8sma1 }} ansible_host={{ scope.k8sma1_ip }} ansible_user={{ scope.ansible_user }}
+{{ scope.k8sma1 }} ansible_host={{ scope.k8sma1_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [seconds]
-{{ scope.k8sma2 }} ansible_host={{ scope.k8sma2_ip }} ansible_user={{ scope.ansible_user }}
-{{ scope.k8sma3 }} ansible_host={{ scope.k8sma3_ip }} ansible_user={{ scope.ansible_user }}
+{{ scope.k8sma2 }} ansible_host={{ scope.k8sma2_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+{{ scope.k8sma3 }} ansible_host={{ scope.k8sma3_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [second]
-{{ scope.k8sma2 }} ansible_host={{ scope.k8sma2_ip }} ansible_user={{ scope.ansible_user }}
+{{ scope.k8sma2 }} ansible_host={{ scope.k8sma2_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [third]
-{{ scope.k8sma3 }} ansible_host={{ scope.k8sma3_ip }} ansible_user={{ scope.ansible_user }}
+{{ scope.k8sma3 }} ansible_host={{ scope.k8sma3_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [masters]
-{{ scope.k8sma1 }} ansible_host={{ scope.k8sma1_ip }} ansible_user={{ scope.ansible_user }}
-{{ scope.k8sma2 }} ansible_host={{ scope.k8sma2_ip }} ansible_user={{ scope.ansible_user }}
-{{ scope.k8sma3 }} ansible_host={{ scope.k8sma3_ip }} ansible_user={{ scope.ansible_user }}
+{{ scope.k8sma1 }} ansible_host={{ scope.k8sma1_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+{{ scope.k8sma2 }} ansible_host={{ scope.k8sma2_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+{{ scope.k8sma3 }} ansible_host={{ scope.k8sma3_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [workers]
-{{ scope.k8swk1 }} ansible_host={{ scope.k8swk1_ip }} ansible_user={{ scope.ansible_user }}
-{{ scope.k8swk2 }} ansible_host={{ scope.k8swk2_ip }} ansible_user={{ scope.ansible_user }}
-{{ scope.k8swk3 }} ansible_host={{ scope.k8swk3_ip }} ansible_user={{ scope.ansible_user }}
+{{ scope.k8swk1 }} ansible_host={{ scope.k8swk1_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+{{ scope.k8swk2 }} ansible_host={{ scope.k8swk2_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+{{ scope.k8swk3 }} ansible_host={{ scope.k8swk3_ip }} ansible_user={{ scope.ansible_user }} ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 {% endfor %}

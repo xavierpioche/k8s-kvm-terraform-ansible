@@ -1,7 +1,8 @@
 {% for scope in variablescopes.variablescopes %}
 dnsforwarder: 192.168.1.1
 domainname: {{ scope.dns_domain }}
-dnsservername: {{ scope.k8dns1 }}
-dnsserveraddress: {{ scope.k8dns1_ip }}
+dnsservername: {{ scope.k8sdns1 }}
+dnsserveraddress: {{ scope.k8sdns1_ip }}
 reverseip: {{ scope.reverseip }}
+proxy:
 {% endfor %}

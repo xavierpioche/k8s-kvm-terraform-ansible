@@ -66,4 +66,4 @@
 
     - name: reboot the server
       ansible.builtin.reboot:
-        reboot_timeout: 10
+        reboot_timeout: 30

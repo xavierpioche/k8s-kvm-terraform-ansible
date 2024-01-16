@@ -1,7 +1,7 @@
 {% for scope in variablescopes.variablescopes %}
 
 dns_domain: {{ scope.dns_domain }}
-dns_server: {{ scope.k8dns1_ip }}
+dns_server: {{ scope.k8sdns1_ip }}
 k8slb_name: {{ scope.k8slb }}
 k8slb_ip: {{ scope.k8slb_ip }}
 k8slb_vip_ip: {{ scope.k8slb_ip }}
@@ -41,5 +41,6 @@ kubernetes_version: 1.28.5-1.1
 
 kubeadm_init_master: {{ scope.k8sma1_ip }}
 
+proxy: 
 
 {% endfor %}

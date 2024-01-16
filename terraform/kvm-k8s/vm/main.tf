@@ -13,13 +13,25 @@ variable "domain" { default = "example.com" }
 variable "ip_type" { default = "dhcp" } # dhcp is other valid type
 variable "memoryMB" { default = 1024*1 }
 variable "cpu" { default = 1 }
+variable "vmpool" { default = "pool" }
+variable "ansible_user" { default = "ansible" }
+variable "image_path" { default = "/tmp" }
+variable "image_name" { default = "jammy-server-cloudimg-amd64.img" }
+variable "var.diskoctsize" { default = 21474836480 }
 
 // fetch the latest ubuntu release image from their mirrors
 resource "libvirt_volume" "os_image" {
   name = "${var.hostname}-os_image"
-  pool = "kvmpool01"
-  source = "/home/xavier/Downloads/jammy-server-cloudimg-amd64.img"
+  pool = "${var.vmpool}"
+  source = "${var.image_path}/${var.image_name}"
   format = "qcow2"
+}
+
+resource "libvirt_volume" "resized_os_image" {
+  name = "${var.hostname}-resized-os_image"
+  pool = "${var.vmpool}"
+  size = var.diskoctsize
+  base_volume_id  = libvirt_volume.os_image.id
 }
 
 // Use CloudInit ISO to add ssh-key to the instance
@@ -36,6 +48,7 @@ data "template_file" "user_data" {
     hostname = var.hostname
     fqdn = "${var.hostname}.${var.domain}"
     public_key = file("~/.ssh/id_rsa.pub")
+    ansible_user = var.ansible_user
   }
 }
 
@@ -62,7 +75,7 @@ resource "libvirt_domain" "domain-ubuntu" {
   vcpu = var.cpu
 
   disk {
-    volume_id = libvirt_volume.os_image.id
+    volume_id = libvirt_volume.resized_os_image.id
   }
   network_interface {
     network_name = "default"

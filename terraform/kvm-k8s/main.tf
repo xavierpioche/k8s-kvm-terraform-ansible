@@ -28,6 +28,11 @@ variable "vms_domain" { type = list }
 variable "vms_ip_type" { type = list }
 variable "vms_memoryMB" { type = list }
 variable "vms_cpu" { type = list }
+variable "ansible_user" {}
+variable "image_path" {}
+variable "image_name" {}
+variable "vms_pool" { type = list }
+variable "vms_disk" { type = list }
 
 #variable "dns_server" {}
 #variable "common_vm_envx" {}
@@ -51,6 +56,11 @@ module "vm" {
 	ip_type = var.vms_ip_type["${each.key}"]
 	memoryMB = var.vms_memoryMB["${each.key}"]
 	cpu = var.vms_cpu["${each.key}"]
+	vmpool = var.vms_pool["${each.key}"]
+	ansible_user = var.ansible_user
+	image_path = var.image_path
+	image_name = var.image_name
+	diskoctsize = var.vms_disk["${each.key}"] * 1024 * 1024 * 1024
 }
 
 output "information" {
