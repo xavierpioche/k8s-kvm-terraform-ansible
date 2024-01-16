@@ -5,6 +5,9 @@
   tasks:
     - action: setup
 
+    - import_tasks: zz_1-proxy-system.yml
+      when: (proxy is defined) and (proxy|length > 0)
+
     - import_tasks: zz_0-add-packages.yml
       vars:
          package_list:
@@ -28,21 +31,16 @@
       vars:
          src: templates/named.conf.options.j2
          dest: /etc/bind/named.conf.options
-         #dnsforwarder: 192.168.1.1
 
     - import_tasks: zz_0-templates.yml
       vars:
          src: templates/named.conf.local.j2
          dest: /etc/bind/named.conf.local
-         #domainname: k8s.xprd.local
 
     - import_tasks: zz_0-templates.yml
       vars:
          src: templates/db.zone.j2
          dest: /etc/bind/zones/{{ domainname }}
-         #domainname: k8s.xprd.local
-         #dnsservername: k8sdns
-         #dnsserveraddress: 192.168.122.197
 
     - import_tasks: zz_0-templates.yml
       vars:
@@ -68,4 +66,4 @@
 
     - name: reboot the server
       ansible.builtin.reboot:
-        reboot_timeout: 30
+        reboot_timeout: 10
