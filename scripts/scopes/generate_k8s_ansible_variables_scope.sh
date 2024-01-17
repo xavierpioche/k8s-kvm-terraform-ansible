@@ -1,6 +1,6 @@
 ##
 ## set proxy here if necessary
-PROXY=
+PROXY="N"
 PODSCIDR="10.200.0.0/16"
 SVCSCIDR="10.201.0.0/16"
 ##
@@ -25,7 +25,7 @@ grep "," k8s-lbs_hosts.j2.scope >> ${OUT}
 
 echo "        reverseip: ${REVIP}," >> ${OUT}
 echo "        dns_domain: ${DOMAIN}," >> ${OUT}
-if [ ${#PROXY} -eq 0 ]; then PROXY=N ; fi
+if [ ${#PROXY} -eq 1 ]; then PROXY=N ; fi
 echo "        proxy: ${PROXY}," >> ${OUT}
 echo "        podscidr: ${PODSCIDR}," >> ${OUT}
 echo "        svcscidr: ${SVCSCIDR}," >> ${OUT}
