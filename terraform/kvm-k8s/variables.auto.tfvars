@@ -10,7 +10,7 @@ common_vm_subenvx = "k8s"
 common_vm_envx = "xprd"
 common_vm_tld = "local"
 
-dns_server = "192.168.122.231"
+dns_server = "192.168.122.192"
 reverse = "122.168.192.in-addr.arpa"
 
 ansible_user="xavier"

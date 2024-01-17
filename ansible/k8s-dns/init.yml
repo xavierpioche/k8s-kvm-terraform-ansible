@@ -6,7 +6,7 @@
     - action: setup
 
     - import_tasks: zz_1-proxy-system.yml
-      when: (proxy is defined) and (proxy|length > 0)
+      when: (proxy is defined) and (proxy|length > 5)
 
     - import_tasks: zz_0-add-packages.yml
       vars:

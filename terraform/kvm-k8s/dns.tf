@@ -11,16 +11,8 @@ variable "common_vm_subenvx" {}
 variable "common_vm_tld" {}
 variable "reverse" {}
 
-resource "null_resource" "previous" {}
-
-resource "time_sleep" "wait_60_seconds" {
-  depends_on = [ null_resource.previous ]
-  create_duration = "60s"
-}
-
 
 module "vm_dns" {
-    depends_on = [ time_sleep.wait_60_seconds ]
     for_each = local.vms_creation
     source = "./dns"
     vm_name = values(module.vm)["${each.key}"].vm_name[0]

@@ -49,6 +49,14 @@
     backrefs: yes
   changed_when: False
 
+- name: Change pause version
+  lineinfile:
+    path: /etc/containerd/config.toml
+    regexp: '^(.*)pause:3.8(.*)$'
+    line: '\1pause:3.9\2'
+    backrefs: yes
+  changed_when: False
+
 - name: Get checksum of containerd configuration after
   stat:
     path: /etc/containerd/config.toml

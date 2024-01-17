@@ -6,7 +6,7 @@
 
 - name: pulling images
   ansible.builtin.command:
-    cmd: kubeadm config images pull
+    cmd: "kubeadm config images pull --kubernetes-version {{ config_version }}"
   when: not __kubeadm_already_init.stat.exists
 
 - name: Init cluster

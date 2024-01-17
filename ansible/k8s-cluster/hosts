@@ -1,25 +1,25 @@
 
 
 [main]
-k8sma1 ansible_host=192.168.122.212 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma1 ansible_host=192.168.122.229 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [seconds]
-k8sma2 ansible_host=192.168.122.198 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
-k8sma3 ansible_host=192.168.122.169 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma2 ansible_host=192.168.122.212 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma3 ansible_host=192.168.122.159 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [second]
-k8sma2 ansible_host=192.168.122.198 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma2 ansible_host=192.168.122.212 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [third]
-k8sma3 ansible_host=192.168.122.169 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma3 ansible_host=192.168.122.159 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [masters]
-k8sma1 ansible_host=192.168.122.212 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
-k8sma2 ansible_host=192.168.122.198 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
-k8sma3 ansible_host=192.168.122.169 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma1 ansible_host=192.168.122.229 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma2 ansible_host=192.168.122.212 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8sma3 ansible_host=192.168.122.159 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
 [workers]
-k8swk1 ansible_host=192.168.122.156 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
-k8swk2 ansible_host=192.168.122.248 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
-k8swk3 ansible_host=192.168.122.247 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8swk1 ansible_host=192.168.122.211 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8swk2 ansible_host=192.168.122.156 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+k8swk3 ansible_host=192.168.122.163 ansible_user=xavier ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 
