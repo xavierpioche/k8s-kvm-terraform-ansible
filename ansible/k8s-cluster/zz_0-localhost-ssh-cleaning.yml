@@ -1,0 +1,22 @@
+- name: remove old host from ssh known_hosts
+  delegate_to: localhost
+  ansible.builtin.command:
+    cmd: "ssh-keygen -R {{ item }}"
+  loop:
+    - "{{ k8sma1_name }}"
+    - "{{ k8sma2_name }}"
+    - "{{ k8sma3_name }}"
+    - "{{ k8swk1_name }}"
+    - "{{ k8swk2_name }}"
+    - "{{ k8swk3_name }}"
+
+- name: disable strict host key check
+  delegate_to: localhost
+  become: yes
+  lineinfile:
+    path: /etc/ssh/ssh_config
+    regexp: '^(.*)StrictHostKeyChecking(.*)$'
+    line: 'StrictHostKeyChecking no'
+    backrefs: yes
+  changed_when: False
+

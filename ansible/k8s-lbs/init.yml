@@ -35,7 +35,7 @@
          #server_ip_3: "192.168.122.186"
          #server_port_3: "6443"
 
-    - import_tasks: zz_0-restart_services
+    - import_tasks: zz_0-restart_services.yml
       vars:
          svc:
            - haproxy
