@@ -1,24 +1,24 @@
-sudo virsh shutdown k8sma1
-sudo virsh shutdown k8sma2
-sudo virsh shutdown k8sma3
-sudo virsh shutdown k8swk3
-sudo virsh shutdown k8swk2
-sudo virsh shutdown k8swk1
-
-sleep 5
-diskpath=$(virsh pool-dumpxml kvmpool01| grep -e "<path>" | sed -e "s/<[^>]*>//g")
-sudo qemu-img resize ${diskpath}/k8sma1-os_image +20G
-sudo qemu-img resize ${diskpath}/k8sma2-os_image +20G
-sudo qemu-img resize ${diskpath}/k8sma3-os_image +20G
-sudo qemu-img resize ${diskpath}/k8swk1-os_image +20G
-sudo qemu-img resize ${diskpath}/k8swk2-os_image +20G
-sudo qemu-img resize ${diskpath}/k8swk3-os_image +20G
-
-sleep 5
-
-sudo virsh start k8sma1
-sudo virsh start k8sma2
-sudo virsh start k8sma3
-sudo virsh start k8swk3
-sudo virsh start k8swk2
-sudo virsh start k8swk1
+#sudo virsh shutdown k8sma1
+#sudo virsh shutdown k8sma2
+#sudo virsh shutdown k8sma3
+#sudo virsh shutdown k8swk3
+#sudo virsh shutdown k8swk2
+#sudo virsh shutdown k8swk1
+#
+#sleep 5
+#diskpath=$(virsh pool-dumpxml kvmpool01| grep -e "<path>" | sed -e "s/<[^>]*>//g")
+#sudo qemu-img resize ${diskpath}/k8sma1-os_image +20G
+#sudo qemu-img resize ${diskpath}/k8sma2-os_image +20G
+#sudo qemu-img resize ${diskpath}/k8sma3-os_image +20G
+#sudo qemu-img resize ${diskpath}/k8swk1-os_image +20G
+#sudo qemu-img resize ${diskpath}/k8swk2-os_image +20G
+#sudo qemu-img resize ${diskpath}/k8swk3-os_image +20G
+#
+#sleep 5
+#
+#sudo virsh start k8sma1
+#sudo virsh start k8sma2
+#sudo virsh start k8sma3
+#sudo virsh start k8swk3
+#sudo virsh start k8swk2
+#sudo virsh start k8swk1

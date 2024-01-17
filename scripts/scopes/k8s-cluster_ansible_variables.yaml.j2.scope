@@ -18,5 +18,8 @@ variablescopes:
 	k8slb_ip : 192.168.122.250,
         reverseip: 122.168.192,
         dns_domain: k8S.xprd.local,
+        proxy: ,
+        podscidr: 10.200.0.0/16,
+        svcscidr: 10.201.0.0/16,
         ansible_user: xavier
 }

@@ -4,5 +4,6 @@ domainname: {{ scope.dns_domain }}
 dnsservername: {{ scope.k8sdns1 }}
 dnsserveraddress: {{ scope.k8sdns1_ip }}
 reverseip: {{ scope.reverseip }}
-proxy:
+proxy: {{ scope.proxy }}
+no_proxy: localhost
 {% endfor %}

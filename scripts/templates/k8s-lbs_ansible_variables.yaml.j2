@@ -23,5 +23,6 @@ worker_ip_2: {{ scope.k8swk2_ip }}
 worker_name_3: {{ scope.k8swk3 }}
 worker_port_3: 8080
 worker_ip_3: {{ scope.k8swk3_ip }}
-proxy:
+proxy: {{ scope.proxy }}
+no_proxy: {{ scope.k8slb_ip }},{{ scope.k8sma1_ip }},{{ scope.k8sma2_ip }},{{ scope.k8sma3_ip }},{{ scope.k8swk1_ip }},{{ scope.k8swk2_ip }},{{ scope.k8swk3 }},{{ scope.podscidr }},{{ scope.svcscidr }},127.0.0.1,localhost
 {% endfor %}
