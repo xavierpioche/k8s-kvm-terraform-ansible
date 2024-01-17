@@ -5,6 +5,6 @@ vms_memoryMB = [ 2048, 2048 ]
 vms_cpu = [ 1 , 1 ]
 vms_pool = [ "kvmpool01" ]
 vms_disk = [ 10 ]
-ansible_user="ansible"
+ansible_user="xavier"
 image_path="/home/xavier/Downloads"
 image_name="jammy-server-cloudimg-amd64.img"

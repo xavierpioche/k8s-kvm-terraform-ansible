@@ -36,7 +36,7 @@
              [Service]
              Environment="HTTP_PROXY=http://{{ proxy }}"
              Environment="HTTPS_PROXY=http://{{ proxy }}"
-             Environment="NO_PROXY=localhost,{{ masters }},{{ k8swk1_ip }},{{ k8swk2_ip }},{{ k8swk3_ip }}"
+             Environment="NO_PROXY=localhost,{{ masters }},{{ k8swk1_ip }},{{ k8swk2_ip }},{{ k8swk3_ip }},{{ podscidr }},{{ svcscidr }}"
        when: (proxy is defined) and (proxy|length > 5)
 
      - import_tasks: pre-requisites.yml

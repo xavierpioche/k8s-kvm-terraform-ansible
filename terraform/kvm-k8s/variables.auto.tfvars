@@ -13,6 +13,6 @@ common_vm_tld = "local"
 dns_server = "192.168.122.231"
 reverse = "122.168.192.in-addr.arpa"
 
-ansible_user="ansible"
+ansible_user="xavier"
 image_path="/home/xavier/Downloads"
 image_name="jammy-server-cloudimg-amd64.img"
