@@ -1,16 +1,16 @@
 variablescopes:
 - {
 	k8sma1: k8sma1,
-	k8sma1_ip : 192.168.122.229,
+	k8sma1_ip : 192.168.122.224,
 	k8sma2: k8sma2,
-	k8sma2_ip : 192.168.122.212,
+	k8sma2_ip : 192.168.122.233,
 	k8sma3: k8sma3,
-	k8sma3_ip : 192.168.122.159,
+	k8sma3_ip : 192.168.122.241,
 	k8swk1: k8swk1,
-	k8swk1_ip : 192.168.122.211,
+	k8swk1_ip : 192.168.122.195,
 	k8swk2: k8swk2,
-	k8swk2_ip : 192.168.122.156,
+	k8swk2_ip : 192.168.122.162,
 	k8swk3: k8swk3,
-	k8swk3_ip : 192.168.122.163,
+	k8swk3_ip : 192.168.122.189,
 	ansible_user: xavier
 }

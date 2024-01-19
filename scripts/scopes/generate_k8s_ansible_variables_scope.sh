@@ -3,6 +3,7 @@
 PROXY="N"
 PODSCIDR="10.200.0.0/16"
 SVCSCIDR="10.201.0.0/16"
+ENDPOINT="kubernetes"
 ##
 echo "! do you need a proxy for your vms? PROXY var=${PROXY}"
 ##
@@ -27,6 +28,7 @@ echo "        reverseip: ${REVIP}," >> ${OUT}
 echo "        dns_domain: ${DOMAIN}," >> ${OUT}
 if [ ${#PROXY} -eq 1 ]; then PROXY=N ; fi
 echo "        proxy: ${PROXY}," >> ${OUT}
+echo "        endpoint: ${ENDPOINT}," >> ${OUT}
 echo "        podscidr: ${PODSCIDR}," >> ${OUT}
 echo "        svcscidr: ${SVCSCIDR}," >> ${OUT}
 echo "        ansible_user: ${LOGNAME}" >> ${OUT}

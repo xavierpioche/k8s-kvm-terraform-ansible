@@ -40,13 +40,13 @@ listen stats
     stats hide-version
     stats auth admin:password
 
-frontend {{ vip_name }}
+frontend default-front
    bind *:{{ vip_port }}
    option tcplog
    mode tcp
-   default_backend backend_{{vip_name }}
+   default_backend default-backend
 
-backend backend_{{ vip_name }}
+backend default-backend
    mode tcp
    balance roundrobin
    option tcp-check

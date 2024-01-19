@@ -4,6 +4,7 @@ dns_server: {{ scope.k8sdns1_ip }}
 vip_name: {{ scope.k8slb }}
 vip_ip: {{ scope.k8slb_ip }}
 vip_port: 6443
+endpoint: {{ scope.endpoint }}
 server_name_1: {{ scope.k8sma1 }}
 server_ip_1: {{ scope.k8sma1_ip }}
 server_port_1: 6443
