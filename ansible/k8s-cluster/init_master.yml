@@ -10,7 +10,7 @@
   when: not __kubeadm_already_init.stat.exists
 
 - name: Init cluster
-  command: "kubeadm init --apiserver-advertise-address={{ k8slb_vip_ip }} --apiserver-cert-extra-sans={{ endpoint }}.{{ dnsdomain }} --node-name={{ ansible_hostname }} --pod-network-cidr={{ podscidr }}  --service-cidr={{ svcscidr }} --control-plane-endpoint={{ endpoint }}.{{ dnsdomain }} --ignore-preflight-errors=all"
+  command: "kubeadm init --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans={{ endpoint }}.{{ dnsdomain }} --node-name={{ ansible_hostname }} --pod-network-cidr={{ podscidr }}  --service-cidr={{ svcscidr }} --control-plane-endpoint={{ endpoint }}.{{ dnsdomain }} "
   register: __init_output
   when: not __kubeadm_already_init.stat.exists
 
