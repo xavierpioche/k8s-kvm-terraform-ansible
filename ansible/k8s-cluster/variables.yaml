@@ -6,26 +6,26 @@ k8slb_name: k8slb
 k8slb_ip: 192.168.122.249
 k8slb_vip_ip: 192.168.122.249
 endpoint: kubernetes
-k8sma1_ip: 192.168.122.224
+k8sma1_ip: 192.168.122.231
 k8sma1_name: k8sma1
-k8sma2_ip: 192.168.122.233
+k8sma2_ip: 192.168.122.250
 k8sma2_name: k8sma2
-k8sma3_ip: 192.168.122.241
+k8sma3_ip: 192.168.122.163
 k8sma3_name: k8sma3
-k8swk1_ip: 192.168.122.195
+k8swk1_ip: 192.168.122.190
 k8swk1_name: k8swk1
-k8swk2_ip: 192.168.122.162
+k8swk2_ip: 192.168.122.209
 k8swk2_name: k8swk2
-k8swk3_ip: 192.168.122.189
+k8swk3_ip: 192.168.122.168
 k8swk3_name: k8swk3
 
-masters: "192.168.122.224,192.168.122.233,192.168.122.241"
-main: 192.168.122.224
+masters: "192.168.122.231,192.168.122.250,192.168.122.163"
+main: 192.168.122.231
 loadbalancer: 192.168.122.249
 
-master1: 192.168.122.224
-master2: 192.168.122.233
-master3: 192.168.122.241
+master1: 192.168.122.231
+master2: 192.168.122.250
+master3: 192.168.122.163
 podscidr: 10.200.0.0/16
 svcscidr: 10.201.0.0/16
 dnsdomain: k8s.xprd.local
@@ -41,9 +41,9 @@ kubernetes_prerequisites_packages:
 kubernetes_version: 1.28.5-1.1
 config_version: 1.28.5
 
-kubeadm_init_master: 192.168.122.224
+kubeadm_init_master: 192.168.122.231
 
 proxy: N
 
-no_proxy: 192.168.122.249,192.168.122.224,192.168.122.233,192.168.122.241,192.168.122.195,192.168.122.162,k8swk3,10.200.0.0/16,10.201.0.0/16,127.0.0.1,localhost
+no_proxy: 192.168.122.249,192.168.122.231,192.168.122.250,192.168.122.163,192.168.122.190,192.168.122.209,k8swk3,10.200.0.0/16,10.201.0.0/16,127.0.0.1,localhost
 

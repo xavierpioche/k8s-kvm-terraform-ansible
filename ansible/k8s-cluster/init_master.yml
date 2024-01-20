@@ -10,7 +10,7 @@
   when: not __kubeadm_already_init.stat.exists
 
 - name: Init cluster
-  command: "kubeadm init --apiserver-advertise-address={{ k8sma1_ip }} --apiserver-cert-extra-sans={{ k8sma1_ip }} --node-name={{ ansible_hostname }} --pod-network-cidr={{ podscidr }}  --service-cidr={{ svcscidr }} --control-plane-endpoint={{ k8sma1_ip }}"
+  command: "kubeadm init --apiserver-advertise-address={{ k8slb_vip_ip }} --apiserver-cert-extra-sans={{ endpoint }}.{{ dnsdomain }} --node-name={{ ansible_hostname }} --pod-network-cidr={{ podscidr }}  --service-cidr={{ svcscidr }} --control-plane-endpoint={{ endpoint }}.{{ dnsdomain }} --ignore-preflight-errors=all"
   register: __init_output
   when: not __kubeadm_already_init.stat.exists
 
@@ -44,7 +44,7 @@
 
 - name: Check if master is initialized
   uri:
-    url: "https://{{ k8sma1_ip }}:6443"
+    url: "https://{{ endpoint }}.{{ dnsdomain }}:6443"
     validate_certs: no
     status_code: [403]
   register: result

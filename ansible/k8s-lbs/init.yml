@@ -22,6 +22,7 @@
          dest: /etc/haproxy/haproxy.cfg
 
     - import_tasks: zz_1-dns-update.yml
+      become: no
       delegate_to: localhost
       vars:
         dnsrecord: "{{ endpoint }}"

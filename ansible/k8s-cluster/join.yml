@@ -1,7 +1,7 @@
 - name: Check if master is initialized
   delegate_to: "{{ kubeadm_init_master }}"
   uri:
-    url: "https://{{ kubeadm_init_master }}:6443"
+    url: "https://{{ endpoint }}.{{ dnsdomain }}:6443"
     validate_certs: no
     status_code: [403]
   register: result
