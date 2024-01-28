@@ -1,1 +1,1 @@
-../kvm-k8s/main.tf
+../../../k8s-cluster/terraform/current/main.tf

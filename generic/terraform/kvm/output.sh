@@ -1,1 +1,1 @@
-../kvm-k8s/output.sh
+../../../k8s-cluster/terraform/current/output.sh
