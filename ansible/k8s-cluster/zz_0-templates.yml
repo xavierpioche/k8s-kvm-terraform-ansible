@@ -1,6 +1,0 @@
-    - name: add file "{{ dest }}"
-      template:
-        src: "{{ src }}"
-        dest: "{{ dest }}"
-        mode: 0644
-

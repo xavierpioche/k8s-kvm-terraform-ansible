@@ -1,8 +1,0 @@
-- hosts: localhost
-  become: no
-  max_fail_percentage: 0
-  gather_facts: yes
-  vars_files: ./variables.yaml
-
-  tasks:
-     - import_tasks: zz_0-localhost-ssh-cleaning.yml

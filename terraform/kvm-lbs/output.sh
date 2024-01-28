@@ -1,1 +1,0 @@
-../kvm-k8s/output.sh

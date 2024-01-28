@@ -1,7 +1,0 @@
-- hosts: all
-  become: yes
-  max_fail_percentage: 0
-  vars_files: ./variables.yaml
-  tasks:
-    - action: setup
-
