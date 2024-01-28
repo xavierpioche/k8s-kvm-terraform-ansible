@@ -1,0 +1,58 @@
+
+- name: Check if already init
+  stat:
+    path: /etc/kubernetes/admin.conf
+  register: __kubeadm_already_init
+
+- name: pulling images
+  ansible.builtin.command:
+    cmd: "kubeadm config images pull --kubernetes-version {{ config_version }}"
+  when: not __kubeadm_already_init.stat.exists
+
+- name: Init cluster
+  command: "kubeadm init --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans={{ endpoint }}.{{ dnsdomain }} --node-name={{ ansible_hostname }} --pod-network-cidr={{ podscidr }}  --service-cidr={{ svcscidr }} --control-plane-endpoint={{ endpoint }}.{{ dnsdomain }} "
+  register: __init_output
+  when: not __kubeadm_already_init.stat.exists
+
+- name: Extract define join command and token
+  set_fact:
+    join_command: "{{ __init_output.stdout_lines | select('match', '^kubeadm join') | first }}"
+    join_token: "{{ __init_output.stdout_lines | select('match', '^kubeadm join') | first | regex_replace('.*--token ([^ ]*).*', '\\1') }}"
+  when: not __kubeadm_already_init.stat.exists
+
+- name: Check if kubeconfig already exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.kube"
+  register: __kubeconfig_already_init
+
+- name: Create .kube directory
+  file:
+    path: "{{ ansible_env.HOME }}/.kube"
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
+  when: not __kubeconfig_already_init.stat.exists
+
+- name: Copy admin.conf to .kube/config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ ansible_env.HOME }}/.kube/config"
+    remote_src: true
+    mode: 0640
+  when: not __kubeconfig_already_init.stat.exists
+
+- name: Check if master is initialized
+  uri:
+    url: "https://{{ endpoint }}.{{ dnsdomain }}:6443"
+    validate_certs: no
+    status_code: [403]
+  register: result
+  until: "result.status == 403"
+  retries: 20
+  delay: 5
+  when: not __kubeconfig_already_init.stat.exists
+
+- name: Add CNI - kuberouter
+  shell: kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+  when: not __kubeadm_already_init.stat.exists

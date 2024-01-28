@@ -1,0 +1,2 @@
+zone "{{ domainname }}"  { type master; file "/etc/bind/zones/{{ domainname }}"; allow-update {any;}; };
+zone "{{ reverseip }}.in-addr.arpa" in { type master; file "/etc/bind/zones/{{ reverseip }}"; allow-update {any;}; };

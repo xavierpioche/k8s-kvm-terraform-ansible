@@ -1,0 +1,44 @@
+CPTH=`pwd`
+########
+## DNS
+########
+DNS_TF_PATH="k8s-dns/terraform/current"
+cd {DNS_TF_PATH}
+terraform init
+terraform plan 
+terraform apply -auto-approve
+# wait for dhcp
+sleep 30
+terraform refresh
+terraform plan 
+terraform apply -auto-approve
+#
+cd ${CPTH}
+sleep 10
+cd k8s-dns/ansible/
+./hosts.sh > hosts
+./variables.yaml.sh > variables.yaml
+ansible-playbook init.yml
+########
+### LBS
+#######
+cd ${CPTH}
+LBS_TF_PATH="k8s-lbs/terraform/current"
+cd ${LBS_TF_PATH}
+./dns.auto.tfvars.sh > dns.auto.tfvars
+terraform init
+terraform plan && terraform apply -auto-approve
+sleep 30
+terraform refresh && terraform plan && terraform apply -auto-approve
+#########
+### K8S
+########
+cd ${CPTH}
+K8S_TF_PATH="k8s-cluster/terraform/current"
+cd ${K8S_TF_PATH}
+./dns.auto.tfvars.sh > dns.auto.tfvars
+terraform init
+terraform plan && terraform apply
+sleep 30
+terraform refresh && terraform plan && terraform apply -auto-approve
+

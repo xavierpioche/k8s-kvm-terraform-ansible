@@ -64,34 +64,19 @@ virsh pool-autostart default
 ```
 
 ## Running
-### create the dns
-- Start with terraform/kvm-dns (terraform init, plan, apply, refresh)
-- then go to ansible/k8s-dns, modify the hosts file and the variable file, 
-- then execute command ansible-playbook init.yml
-### create the k8s cluster
-- start with terraform/kvm-k8s, modify variables.auto.tfvars with the correct ip for dns_server and reverse then :
+### create the dns and the lbs
 ```sh
-cd terraform/kvm-k8s
-terraform init
-terraform plan && terraform apply ; sleep 5 ; terraform refresh ; terraform plan && terraform apply
-cd ../../scripts/
-./go_kvm_disk_resize 
-./go_ansible_config_k8s_cluster
-cd ../ansible/k8s-cluster
-ansible-playbook main.yml
+./1_go_dns_lbs
+```
+### create the k8s cluster
+```sh
+./2_go_k8s
 ```
 
 ## Lab
 As any lab, it's possible to crash you k8s cluster. In this case, if you want to recreate, just:
 ```sh
-cd terraform/kvm-k8s
-terraform destroy
-terraform plan && terraform apply ; sleep 5 ; terraform refresh ; terraform plan && terraform apply
-cd ../../scripts/
-./go_kvm_disk_resize
-./go_ansible_config_k8S_cluster
-cd ../ansible/k8s-cluster
-ansible-playbook main.yml
+./9_go_destroy 
 ```
 
 

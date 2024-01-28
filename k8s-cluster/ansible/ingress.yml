@@ -1,0 +1,19 @@
+- hosts: main
+  become: yes
+  max_fail_percentage: 0
+  tasks:
+     - name: applying ngress k8s configuration
+       shell: |
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/deployments/common/ns-and-sa.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/deployments/rbac/rbac.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/deployments/common/nginx-config.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/deployments/common/ingress-class.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/config/crd/bases/k8s.nginx.org_virtualservers.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/config/crd/bases/k8s.nginx.org_virtualserverroutes.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/config/crd/bases/k8s.nginx.org_transportservers.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/config/crd/bases/k8s.nginx.org_policies.yaml
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/config/crd/bases/k8s.nginx.org_globalconfigurations.yaml
+
+     - name: applying ingress controller 
+       shell: |
+         kubectl apply -f /tmp/ingress/kubernetes-ingress/deployments/daemon-set/nginx-ingress.yaml
