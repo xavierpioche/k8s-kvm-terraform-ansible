@@ -1,0 +1,13 @@
+- hosts: all
+  become: yes
+  max_fail_percentage: 0
+  vars_files: ./variables.yaml
+  tasks:
+
+    - name: Joining new master to master
+      shell: "echo 'toto' >> /tmp/A"
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups['seconds'] }}"
+      when: ansible_hostname ==  item  and ansible_hostname in groups["seconds"]
+
+

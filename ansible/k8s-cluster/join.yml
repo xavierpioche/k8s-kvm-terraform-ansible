@@ -1,7 +1,7 @@
 - name: Check if master is initialized
   delegate_to: "{{ kubeadm_init_master }}"
   uri:
-    url: "https://{{ kubeadm_init_master }}:6443"
+    url: "https://{{ endpoint }}.{{ dnsdomain }}:6443"
     validate_certs: no
     status_code: [403]
   register: result
@@ -51,7 +51,7 @@
   when: ansible_hostname not in __cmd_res.stdout and ansible_hostname in groups["seconds"]
 
 - name: Joining new master to master
-  shell: "{{ __kubeadm_token.stdout_lines[0] }} --control-plane --certificate-key {{ __kubeadm_certs.stdout_lines[2] }} --apiserver-advertise-address={{ ansible_default_ipv4.address }} --ignore-preflight-errors=all"
+  shell: "{{ __kubeadm_token.stdout_lines[0] }} --control-plane --certificate-key {{ __kubeadm_certs.stdout_lines[2] }} --apiserver-advertise-address=0.0.0.0 --ignore-preflight-errors=all"
   delegate_to: "{{ item }}"
   with_items: "{{ groups['seconds'] }}"
   when: ansible_hostname not in __cmd_res.stdout and ansible_hostname in groups["seconds"]

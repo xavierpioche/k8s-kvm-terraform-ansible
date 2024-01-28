@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  max_fail_percentage: 0
+  gather_facts: yes
+  vars_files: ./variables.yaml
+
+  tasks:
+     - import_tasks: zz_0-templates.yml
+       vars:
+         src: templates/resolv.conf.j2
+         dest: /etc/resolv.conf

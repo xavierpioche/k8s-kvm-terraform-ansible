@@ -1,0 +1,21 @@
+    - name: create etc/environment
+      copy:
+        dest: "/etc/environment"
+        content: |
+           http_proxy="http://{{ proxy }}"
+           https_proxy="http://{{ proxy }}"
+           no_proxy="{{ no_proxy }}"
+
+    - name: create apt.conf
+      file:
+        path: "/etc/apt/apt.conf"
+        state: touch
+
+    - name: add proxy to apt
+      lineinfile:
+        path: "/etc/apt/apt.conf"
+        line: Acquire::http::Proxy "http://{{ proxy }}";
+
+    - name: restart_daemon-reload
+      service:
+        daemon_reload: true

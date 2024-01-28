@@ -8,7 +8,7 @@ ENDPOINT="kubernetes"
 echo "! do you need a proxy for your vms? PROXY var=${PROXY}"
 ##
 CURR=`pwd`
-cd ../../terraform/kvm-dns/
+cd ../../k8s-dns/terraform/current/
 REVIP=$(terraform output dns_server | sed -e "s/\"//g" | awk -F. '{ print $3"."$2"."$1 }')
 DOMAIN=$(terraform output domain_name | sed -e "s/\"//g")
 

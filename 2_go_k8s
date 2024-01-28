@@ -1,0 +1,19 @@
+CPTH=`pwd`
+K8S_TF_PATH="k8s-cluster/terraform/current"
+cd ${K8S_TF_PATH}
+./dns.auto.tfvars.sh > dns.auto.tfvars
+terraform init
+terraform plan && terraform apply
+sleep 30
+terraform refresh && terraform plan && terraform apply -auto-approve
+sleep 10
+echo "generating variables files..."
+cd ${CPTH}/scripts
+./go_ansible_config_k8S_cluster
+echo "configuring loadbalancer..."
+cd ${CPTH}/k8s-lbs/ansible
+ansible-playbook init.yml
+echo "installing kubernetes... finally"
+cd ${CPTH}/k8s-cluster/ansible
+ansible-playbook main.yml
+

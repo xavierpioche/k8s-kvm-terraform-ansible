@@ -1,0 +1,7 @@
+- name: add A record to dns
+  community.general.nsupdate:
+    server: "{{ dns_server }}"
+    zone: "{{ dns_domain }}"
+    record: "{{ dnsrecord }}"
+    type: "{{ dnstype }}"
+    value: "{{ dnsvalue }}"

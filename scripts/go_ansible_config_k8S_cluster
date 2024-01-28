@@ -1,119 +1,58 @@
 current=`pwd`
 
-cd ../terraform/kvm-lbs
+cd ../k8s-lbs/terraform/current/
+terraform output -json information > ../../../scripts/json/k8s-lbs_hosts.json
 
  
+cd ${current}
+cd ../k8s-dns/terraform/current/
+terraform output -json information > ../../../scripts/json/k8s-dns_hosts.json
 
-terraform output -json information > ../../scripts/json/k8s-lbs_hosts.json
 
- 
+cd ${current}
+cd ../k8s-cluster/terraform/current/
+terraform output -json information > ../../../scripts/json/k8s-cluster_hosts.json
 
-cd ../kvm-dns
-
- 
-
-terraform output -json information > ../../scripts/json/k8s-dns_hosts.json
-
- 
-
-cd ../kvm-k8s
-
- 
-
-terraform output -json information > ../../scripts/json/k8s-cluster_hosts.json
-
- 
 
 #-- creation des fichiers hosts ansible
-
- 
-
-cd ../../scripts
-
- 
+cd ${current}
 
 ./k8s-cluster_parse_json2scope.py json/k8s-cluster_hosts.json > scopes/k8s-cluster_hosts.j2.scope
-
- 
-
 ./j2render.py -s k8s-cluster_hosts.j2.scope -t k8s-cluster_hosts.j2 -o k8s-cluster_hosts
-
- 
-
  
 
 ./k8s-cluster_parse_json2scope.py json/k8s-dns_hosts.json > scopes/k8s-dns_hosts.j2.scope
-
- 
-
 ./j2render.py -s k8s-dns_hosts.j2.scope -t k8s-dns_hosts.j2 -o k8s-dns_hosts
-
- 
-
  
 
 ./k8s-cluster_parse_json2scope.py json/k8s-lbs_hosts.json > scopes/k8s-lbs_hosts.j2.scope
-
- 
-
 ./j2render.py -s k8s-lbs_hosts.j2.scope -t k8s-lbs_hosts.j2 -o k8s-lbs_hosts
 
- 
-
- 
 
 #-- creation des fichiers variables ansible
 
- 
-
 cd scopes/
-
- 
 
 ./generate_k8s_ansible_variables_scope.sh
 
- 
-
 cd ..
-
- 
 
 ./j2render.py -s k8s-dns_ansible_variables.yaml.j2.scope -t k8s-dns_ansible_variables.yaml.j2 -o k8s-dns_ansible_variables.yaml
 
- 
-
 ./j2render.py -s k8s-cluster_ansible_variables.yaml.j2.scope -t k8s-cluster_ansible_variables.yaml.j2 -o k8s-cluster_ansible_variables.yaml
-
- 
 
 ./j2render.py -s k8s-lbs_ansible_variables.yaml.j2.scope -t k8s-lbs_ansible_variables.yaml.j2 -o k8s-lbs_ansible_variables.yaml
 
- 
 
 #-- copie des fichiers vers les repertoires ansible
 
- 
+cp output/k8s-cluster_ansible_variables.yaml ../k8s-cluster/ansible/variables.yaml
+cp output/k8s-cluster_hosts ../k8s-cluster/ansible/hosts
 
-cd ../ansible/k8s-cluster
 
-cp ../../scripts/output/k8s-cluster_ansible_variables.yaml variables.yaml
+cp output/k8s-dns_ansible_variables.yaml ../k8s-dns/ansible/variables.yaml
+cp output/k8s-dns_hosts ../k8s-dns/ansible/hosts
 
-cp ../../scripts/output/k8s-cluster_hosts hosts
 
- 
-
-cd ../k8s-dns
-
-cp ../../scripts/output/k8s-dns_ansible_variables.yaml variables.yaml
-
-cp ../../scripts/output/k8s-dns_hosts hosts
-
- 
-
- 
-
-cd ../k8s-lbs
-
-cp ../../scripts/output/k8s-lbs_ansible_variables.yaml variables.yaml
-
-cp ../../scripts/output/k8s-lbs_hosts hosts
+cp output/k8s-lbs_ansible_variables.yaml ../k8s-lbs/ansible/variables.yaml
+cp output/k8s-lbs_hosts ../k8s-lbs/ansible/hosts

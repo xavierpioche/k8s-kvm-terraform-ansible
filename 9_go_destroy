@@ -1,0 +1,27 @@
+#!/bin/bash
+CPTH=`pwd`
+if [ $# -ne 1 ]
+then
+	echo "$0 [dns lbs k8s all]"
+else
+	if [ "$1" == "k8s" ]
+	then
+		cd ${CPTH}/k8s-cluster/terraform/current/
+		terraform destroy
+	elif [ "$1" == "lbs" ]
+        then
+		cd ${CPTH}/k8s-lbs/terraform/current/
+		terraform destroy
+	elif [ "$1" == "dns" ]
+	then
+		cd ${CPTH}/k8s-dns/terraform/current/
+		terraform destroy
+	elif [ "$1" == "all" ]
+	then
+		./$0 k8s
+		./$0 lbs
+		./$0 dns
+	fi
+fi
+
+

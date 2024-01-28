@@ -1,0 +1,5 @@
+vms_name = [ "test" ]
+vms_domain = [ "k8S.xprd.local" ]
+vms_ip_type = [ "dhcp" ]
+vms_memoryMB = [ 4096 ]
+vms_cpu = [ 2 ]
