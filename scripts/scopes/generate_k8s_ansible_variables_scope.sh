@@ -1,6 +1,7 @@
 ##
 ## set proxy here if necessary
-PROXY="N"
+PROXY=$(grep PROXY= ../variables | head -1 | awk -F= '{ print $2 }')
+#PROXY="N"
 PODSCIDR="10.200.0.0/16"
 SVCSCIDR="10.201.0.0/16"
 ENDPOINT="kubernetes"
