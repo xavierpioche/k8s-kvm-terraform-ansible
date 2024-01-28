@@ -1,9 +1,10 @@
+#!/bin/bash 
 CPTH=`pwd`
 ########
 ## DNS
 ########
 DNS_TF_PATH="k8s-dns/terraform/current"
-cd {DNS_TF_PATH}
+cd ${DNS_TF_PATH}
 terraform init
 terraform plan 
 terraform apply -auto-approve
