@@ -1,4 +1,4 @@
-dns_server = "192.168.122.176"
+dns_server = "192.168.122.166"
 common_vm_envx = "xprd"
 common_vm_subenvx = "k8s"
 common_vm_tld = "local"

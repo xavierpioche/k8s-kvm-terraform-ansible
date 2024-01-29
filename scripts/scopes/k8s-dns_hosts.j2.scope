@@ -1,6 +1,6 @@
 variablescopes:
 - {
 	k8sdns1: k8sdns1,
-	k8sdns1_ip : 192.168.122.176,
+	k8sdns1_ip : 192.168.122.166,
 	ansible_user: xavier
 }

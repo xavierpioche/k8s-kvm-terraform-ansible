@@ -47,4 +47,5 @@ proxy: {{ scope.proxy }}
 
 no_proxy: {{ scope.k8slb_ip }},{{ scope.k8sma1_ip }},{{ scope.k8sma2_ip }},{{ scope.k8sma3_ip }},{{ scope.k8swk1_ip }},{{ scope.k8swk2_ip }},{{ scope.k8swk3 }},{{ scope.podscidr }},{{ scope.svcscidr }},127.0.0.1,localhost
 
+reboot: 1
 {% endfor %}

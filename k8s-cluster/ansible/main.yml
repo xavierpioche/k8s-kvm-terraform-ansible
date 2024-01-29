@@ -10,6 +10,7 @@
      - name: reboot the server
        ansible.builtin.reboot:
         reboot_timeout: 60
+       when: reboot == 1
 
      - import_tasks: zz_0-templates.yml
        vars:
