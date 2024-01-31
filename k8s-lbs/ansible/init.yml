@@ -5,6 +5,9 @@
   tasks:
     - action: setup
 
+    - import_tasks: zz_1-proxy-system.yml
+      when: (proxy is defined) and (proxy|length > 5)
+
     - import_tasks: zz_0-templates.yml
       vars:
          src: templates/resolv.conf.j2

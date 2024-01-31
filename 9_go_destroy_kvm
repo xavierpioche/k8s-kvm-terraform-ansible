@@ -1,0 +1,6 @@
+#!/bin/bash
+for vm in `virsh list --all | awk '/k8s/{ print $2}'`
+do
+	virsh destroy $vm
+	virsh undefine $vm --remove-all-storage
+done
